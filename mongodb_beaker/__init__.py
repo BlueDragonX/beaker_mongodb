@@ -187,7 +187,7 @@ before upgrading to 0.5+ and be aware that it will generate new caches.
 import logging
 from beaker.container import NamespaceManager, Container
 from beaker.exceptions import InvalidCacheBackendError, MissingCacheParameter
-from beaker.synchronization import file_synchronizer
+from beaker.synchronization import null_synchronizer
 from beaker.util import verify_directory, SyncDict
 
 from StringIO import StringIO
@@ -266,9 +266,7 @@ class MongoDBNamespaceManager(NamespaceManager):
         """@TODO - stop hitting filesystem for this...
         I think mongo can properly avoid dog piling for us.
         """
-        return file_synchronizer(
-            identifier = "mongodb_container/funclock/%s" % self.namespace,
-            lock_dir = self.lock_dir)
+        return null_synchronizer
 
     def do_remove(self):
         """Clears the entire filesystem (drops the collection)"""
