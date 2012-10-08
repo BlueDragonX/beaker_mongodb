@@ -1,5 +1,5 @@
 ==============
-mongodb_beaker
+beaker_mongodb
 ==============
 MongoDB_. backend for Beaker_.'s caching / session system.
 
@@ -30,7 +30,7 @@ previous values which should be expected behavior while caching.
 Safe is NOT invoked, so failure will be quiet.
 TODO - Safe as overridable config option?
 
-Note that, unless you disable_. it, the mongodb_beaker container will
+Note that, unless you disable_. it, the beaker_mongodb container will
 use pickle (tries loading cpickle first, falls back on pickle) to
 serialize/deserialize data to MongoDB_.
 
@@ -47,14 +47,14 @@ Configuration
 
 To set this up in your own project so that beaker can find it, it must
 define a setuptools entry point in your setup.py file.  If you install
-from the egg distribution, mongodb_beaker's setup.py SHOULD create a
+from the egg distribution, beaker_mongodb's setup.py SHOULD create a
 beaker.backend entry point.  If you need to tweak it/see how it's done
 or it just doesn't work and you need to define your own,
 mine looks like this::
 
     >>> entry_points="""
     ... [beaker.backends]
-    ... mongodb = mongodb_beaker:MongoDBNamespaceManager
+    ... mongodb = beaker_mongodb:MongoDBNamespaceManager
     ... """,
 
 
@@ -90,7 +90,7 @@ this backend.
 
 Finally, you need to define a URL to connect to MongoDB.  This follows the standardized
 MongoDB URI Format[3]_. Currently the only options supported is 'slaveOK'.
-For backwards compatibility with old versions of mongodb_beaker, separating
+For backwards compatibility with old versions of beaker_mongodb, separating
 database and collection with a '#' instead of '.' is supported, but deprecated.
 The syntax is mongodb://<hostname>[:port]/<database>.<collection>
 
@@ -100,7 +100,7 @@ If you want to use MongoDB's optional authentication support, that is also suppo
 
     >>> beaker.cache.navigation.url = mongodb://bwmcadams@passW0Rd?@localhost:27017/beaker.navigation
 
-The mongodb_beaker backend will attempt to authenticate with the username and
+The beaker_mongodb backend will attempt to authenticate with the username and
 password.  You must configure MongoDB's optional authentication support[2]_ for
 this to work (By default MongoDB doesn't use authentication).
 
@@ -130,7 +130,7 @@ configure it to skip_pickle.`` It shouldn't hurt anything to double-pickle,
 but you will certainly waste precious CPU cycles.  And wasting CPU cycles is
 kind of counterproductive in a caching system.
 
-My pylons application configuration for mongodb_beaker has the
+My pylons application configuration for beaker_mongodb has the
 following session_configuration::
 
     >>> beaker.session.type = mongodb
@@ -147,14 +147,14 @@ See the MongoDB CappedCollection_. docs for details.
 Sparse Collection Support
 =========================
 
-The default behavior of mongodb_beaker is to create a single MongoDB Document for each namespace, and store each 
+The default behavior of beaker_mongodb is to create a single MongoDB Document for each namespace, and store each 
 cache key/value on that document.  In this case, the "_id" of the document will be the namespace, and each new cache entry
 will be attached to that document.
 
 This approach works well in many cases and makes it very easy for Mongo to efficiently manage your cache.  However, in other cases
 you may wish to change behavior.  This may be for efficiency reasons, or because you're worried about documents getting too large.
 
-In this case, you can enable a "sparse collection" mode, where mongodb_beaker will create a document for EACH key in the namespace.
+In this case, you can enable a "sparse collection" mode, where beaker_mongodb will create a document for EACH key in the namespace.
 When sparse collections are enabled, the "_id" of a document is a compound document containing the namespace and the key::
 
    { "_id" : { "namespace" : "testcache", "key" : "value" } }

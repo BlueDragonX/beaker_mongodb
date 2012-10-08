@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 #
-# Copyright (c) 2009-2011 Brendan W. McAdams <bwmcadams@evilmonkeylabs.com>
+# Copyright (c) 2009-2011
+#   Brendan W. McAdams <bwmcadams@evilmonkeylabs.com>
+#   Ryan Bourgeois <bluedragonx@gmail.com>
 #
 
 try:
@@ -11,7 +13,7 @@ except ImportError:
     from setuptools import setup, find_packages
 
 setup(
-    name = 'mongodb_beaker',
+    name = 'beaker_mongodb',
     version = '0.5',
     description = 'Beaker backend to write sessions and caches to a ' +\
     'MongoDB schemaless database.',
@@ -20,7 +22,7 @@ setup(
     author_email = 'bwmcadams@gmail.com',
     keywords = 'mongo mongodb beaker cache session',
     license = 'New BSD License',
-    url = 'http://github.com/bwmcadams/mongodb_beaker/',
+    url = 'https://github.com/BlueDragonX/mongodb_beaker/',
     tests_require = ['nose', 'webtest'],
     test_suite='nose.collector',
     classifiers = [
@@ -40,7 +42,7 @@ setup(
     zip_safe = True,
     entry_points="""
     [beaker.backends]
-    mongodb = mongodb_beaker:MongoDBNamespaceManager    
+    mongodb = beaker_mongodb:MongoDBNamespaceManager    
     """,
     requires=['pymongo', 'beaker'],
     install_requires = [

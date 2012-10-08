@@ -226,7 +226,7 @@ def test_store_none():
 
 class TestMongoInit(unittest.TestCase):
     def test_uses_mongo_client(self):
-        from mongodb_beaker import MongoDBNamespaceManager
+        from beaker_mongodb import MongoDBNamespaceManager
         cache = Cache('test', data_dir='./cache', url=uri, type="mongodb", sparse_collection=True)
         assert isinstance(cache.namespace, MongoDBNamespaceManager)
 
