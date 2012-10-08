@@ -14,12 +14,12 @@ except ImportError:
 
 setup(
     name = 'beaker_mongodb',
-    version = '0.5',
+    version = '0.1',
     description = 'Beaker backend to write sessions and caches to a ' +\
     'MongoDB schemaless database.',
     long_description = '\n' + open('README.rst').read(),
-    author='Brendan W. McAdams',
-    author_email = 'bwmcadams@gmail.com',
+    author='Ryan Bourgeois',
+    author_email = 'bluedragonx@gmail.com',
     keywords = 'mongo mongodb beaker cache session',
     license = 'New BSD License',
     url = 'https://github.com/BlueDragonX/mongodb_beaker/',
