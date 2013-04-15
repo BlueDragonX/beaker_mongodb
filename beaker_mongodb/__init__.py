@@ -212,8 +212,7 @@ class MongoDBNamespaceManager(NamespaceManager):
     _sparse = False
 
     # TODO _- support write concern / safe
-    def __init__(self, namespace, url=None, data_dir=None,
-                 lock_dir=None, skip_pickle=False, 
+    def __init__(self, namespace, url=None, data_dir=None, skip_pickle=False,
                  sparse_collection=False, **params):
         NamespaceManager.__init__(self, namespace)
 
@@ -235,14 +234,6 @@ class MongoDBNamespaceManager(NamespaceManager):
             data_key = "mongodb:%s" % (database)
         else:
             raise MissingCacheParameter("Invalid Cache URL.  Cannot parse.")
-
-        # Key will be db + collection
-        if lock_dir:
-            self.lock_dir = lock_dir
-        elif data_dir:
-            self.lock_dir = data_dir + "/container_mongodb_lock"
-        if self.lock_dir:
-            verify_directory(self.lock_dir)
 
         def _create_mongo_conn():
             host_uri = 'mongodb://'
