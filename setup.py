@@ -5,6 +5,9 @@
 #   Ryan Bourgeois <bluedragonx@gmail.com>
 #
 
+# required to avoid nose atexit error
+import multiprocessing
+
 try:
     from setuptools import setup, find_packages
 except ImportError:
