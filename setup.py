@@ -25,7 +25,7 @@ setup(
     author_email = 'bluedragonx@gmail.com',
     keywords = 'mongo mongodb beaker cache session',
     license = 'New BSD License',
-    url = 'https://github.com/BlueDragonX/mongodb_beaker/',
+    url = 'https://github.com/BlueDragonX/beaker_mongodb/',
     tests_require = ['nose', 'webtest'],
     test_suite='nose.collector',
     classifiers = [
