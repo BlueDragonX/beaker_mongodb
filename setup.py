@@ -17,7 +17,7 @@ except ImportError:
 
 setup(
     name = 'beaker_mongodb',
-    version = '0.2',
+    version = '0.3',
     description = 'Beaker backend to write sessions and caches to a ' +\
     'MongoDB schemaless database.',
     long_description = '\n' + open('README.rst').read(),
