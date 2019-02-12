@@ -91,7 +91,9 @@ def using_none_app(environ, start_response):
         cache.clear()
     try:
         value = cache.get_value('value')
-    except Exception, e:
+    except Exception:
+        import sys
+        e = sys.exc_info()[1]
         log.error("Failure: %s", e)
         value = 125
     cache.set_value('value', None)
